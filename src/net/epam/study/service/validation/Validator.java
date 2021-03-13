@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-
     public static boolean billValidator(List<String> text, Pattern pattern){
         boolean result = false;
         if (text != null) {

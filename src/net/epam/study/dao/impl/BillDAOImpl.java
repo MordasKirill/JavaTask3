@@ -2,7 +2,6 @@ package net.epam.study.dao.impl;
 
 import net.epam.study.entity.Bill;
 import net.epam.study.dao.BillDAO;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,11 +21,11 @@ public class BillDAOImpl implements BillDAO {
     private static final Pattern patternItemName = Pattern.compile("(<.*>(.* .*)</.*)");
     private static final Pattern patternItemPrice = Pattern.compile("(<.*>\\$(\\d.*)</.*>)");
     public static final Pattern patternXmlLabel = Pattern.compile("<\\?.* version=\"\\d.*\" encoding=\".*\"\\?>");
+
     public static void fileReader() throws IOException {
         FileInputStream fileInputStream = new FileInputStream("./resources/bill_info");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
         String strLine;
-        List<String> list = new ArrayList<String>();
         while ((strLine = bufferedReader.readLine()) != null)   {
             textFromFile.add(strLine);
         }

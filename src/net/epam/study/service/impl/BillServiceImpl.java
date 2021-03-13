@@ -2,7 +2,6 @@ package net.epam.study.service.impl;
 
 import java.io.IOException;
 import java.util.List;
-
 import net.epam.study.service.validation.Validator;
 import net.epam.study.dao.BillDAO;
 import net.epam.study.dao.DAOFactory;
