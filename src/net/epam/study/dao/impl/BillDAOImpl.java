@@ -17,9 +17,9 @@ public class BillDAOImpl implements BillDAO {
     private static BigDecimal price = null;
     private static String name = null;
     public static final List<String> textFromFile = new ArrayList<>();
-    private static final Pattern patternId = Pattern.compile("(<.*\"(\\d)\">)");
-    private static final Pattern patternItemName = Pattern.compile("(<.*>(.* .*)</.*)");
-    private static final Pattern patternItemPrice = Pattern.compile("(<.*>\\$(\\d.*)</.*>)");
+    private static final Pattern patternId = Pattern.compile("(<\\w* \\w*=\"(\\d)\">)");
+    private static final Pattern patternItemName = Pattern.compile("(<\\w*>(.* .*)</\\w*)");
+    private static final Pattern patternItemPrice = Pattern.compile("(<\\w*>\\$(\\d*\\.\\d*)</\\w*>)");
     public static final Pattern patternXmlLabel = Pattern.compile("<\\?.* version=\"\\d.*\" encoding=\".*\"\\?>");
 
     public static void fileReader() throws IOException {
