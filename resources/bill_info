@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <breakfast-menu>
     <food id="1">
-        <name>Belgian Waffles</name>
+        <name>Chocolate</name>
         <price>$5.95</price>
     </food>
     <food id="2">
         <name>Strawberry Belgian Waffles</name>
         <price>$7.95</price>
+    </food>
+    <food id="3">
+        <name>Belgian Waffles</name>
+        <price>$4.95</price>
+    </food>
+    <food id="4">
+        <name>Milk</name>
+        <price>$1.95</price>
+    </food>
+    <food id="55">
+        <name>Sausages</name>
+        <price>$33.95</price>
     </food>
 </breakfast-menu>

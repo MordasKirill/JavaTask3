@@ -17,8 +17,8 @@ public class BillDAOImpl implements BillDAO {
     private static BigDecimal price = null;
     private static String name = null;
     public static final List<String> textFromFile = new ArrayList<>();
-    private static final Pattern patternId = Pattern.compile("(<\\w* \\w*=\"(\\d)\">)");
-    private static final Pattern patternItemName = Pattern.compile("(<\\w*>(.* .*)</\\w*)");
+    private static final Pattern patternId = Pattern.compile("(<\\w* \\w*=\"(\\d|\\d+)\">)");
+    private static final Pattern patternItemName = Pattern.compile("<\\w*>(.* .*|\\w*)</\\w*>");
     private static final Pattern patternItemPrice = Pattern.compile("(<\\w*>\\$(\\d*\\.\\d*)</\\w*>)");
     public static final Pattern patternXmlLabel = Pattern.compile("<\\?.* version=\"\\d.*\" encoding=\".*\"\\?>");
 
@@ -40,7 +40,7 @@ public class BillDAOImpl implements BillDAO {
                 id = Integer.parseInt(matcherId.group(2));
             }
             if (matcherItemName.find()){
-                name = matcherItemName.group(2);
+                name = matcherItemName.group(1);
             }
             if (matcherItemPrice.find()){
                 price = new BigDecimal(matcherItemPrice.group(2));
