@@ -1,24 +1,28 @@
 package net.epam.study.service.impl;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+
+import net.epam.study.dao.impl.XMLParserDAOImpl;
+import net.epam.study.entity.Attributes;
 import net.epam.study.service.validation.Validator;
-import net.epam.study.dao.BillDAO;
+import net.epam.study.dao.XMLParserDAO;
 import net.epam.study.dao.DAOFactory;
-import net.epam.study.dao.impl.BillDAOImpl;
-import net.epam.study.entity.Bill;
+import net.epam.study.entity.Node;
 import net.epam.study.service.BillService;
 
 public class BillServiceImpl implements BillService {
     @Override
-    public List<Bill> fileParser(List<String> text) throws IOException {
+    public List<Attributes> getAttributes() throws IOException {
         DAOFactory factory = DAOFactory.getInstance();
-        BillDAO billDAO = factory.getBillDAO();
-        BillDAOImpl.fileReader();
-        if (!Validator.billValidator(text, BillDAOImpl.patternXmlLabel)) {
+        XMLParserDAO XMLParserDAO = factory.getXMLParserDAO();
+        XMLParserDAOImpl.fileReader();
+        XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader());
+        XMLParserDAOImpl.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
+        if (!Validator.billValidator((XMLParserDAOImpl.textFromFile), XMLParserDAOImpl.patternXmlLabel)) {
             return null;
         }
-        List<Bill> bill =  billDAO.fileParser(text);
-        return bill;
+        return XMLParserDAO.getAttributes();
     }
 }

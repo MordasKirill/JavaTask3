@@ -1,18 +1,19 @@
 package net.epam.study.main;
 
-import net.epam.study.dao.impl.BillDAOImpl;
-import net.epam.study.entity.Bill;
+import net.epam.study.dao.impl.XMLParserDAOImpl;
+import net.epam.study.entity.Attributes;
+import net.epam.study.entity.Node;
 import net.epam.study.service.validation.Validator;
 import java.util.List;
 
 public class PrintBillInfo {
 
-    public static void print(List<Bill> bill){
-        if (!Validator.billValidator(BillDAOImpl.textFromFile, BillDAOImpl.patternXmlLabel)) {
+    public static void print(List<Attributes> attributes){
+        if (!Validator.billValidator(XMLParserDAOImpl.textFromFile, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct!");
         }
-        if (bill != null) {
-            for (Bill value : bill) {
+        if (attributes.size()>0) {
+            for (Attributes value : attributes) {
                 System.out.println(value);
             }
             System.out.println("Success!");
