@@ -6,6 +6,6 @@ import net.epam.study.entity.Node;
 import java.io.IOException;
 import java.util.List;
 
-public interface BillService {
+public interface XMLParserService {
     List<Attributes> getAttributes() throws IOException;
 }
