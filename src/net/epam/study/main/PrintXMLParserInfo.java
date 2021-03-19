@@ -6,7 +6,7 @@ import net.epam.study.entity.Node;
 import net.epam.study.service.validation.Validator;
 import java.util.List;
 
-public class PrintBillInfo {
+public class PrintXMLParserInfo {
 
     public static void print(List<Attributes> attributes){
         if (!Validator.billValidator(XMLParserDAOImpl.textFromFile, XMLParserDAOImpl.patternXmlLabel)) {
