@@ -25,10 +25,10 @@ public class XMLParserDAOImpl implements XMLParserDAO {
         StringBuilder splintedText = new StringBuilder();
         String strLine;
         while ((strLine = bufferedReader.readLine()) != null) {
-            Pattern pattern = Pattern.compile("\\s*(<.*>.*)");
-            Matcher matcher = pattern.matcher(strLine);
-            if (matcher.find()){
-                splintedText.append(matcher.group(1));
+            Pattern patternForAttr = Pattern.compile("\\s*(.*<.*>.*|\\w*)");
+            Matcher matcherForAttr = patternForAttr.matcher(strLine);
+            if (matcherForAttr.find()){
+                splintedText.append(" ").append(matcherForAttr.group(1));
                 textFromFile.add(strLine);
             }
         }

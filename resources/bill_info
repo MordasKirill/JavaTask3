@@ -5,11 +5,14 @@
         <price>$5.95</price>
     </food>
     <food id="2">
-        <name>Strawberry Belgian Waffles</name>
+        <name>Strawberry
+            Belgian
+            Waffles</name>
         <price>$7.95</price>
     </food>
     <food id="3">
-        <name>Belgian Waffles</name>
+        <name>Belgian
+            Waffles</name>
         <price>$4.95</price>
     </food>
     <food id="4">
