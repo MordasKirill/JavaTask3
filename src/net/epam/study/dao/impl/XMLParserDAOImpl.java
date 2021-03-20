@@ -14,8 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class XMLParserDAOImpl implements XMLParserDAO {
-    public static final List<String> textFromFile = new ArrayList<>();
-    public static List<String> childNodes = new ArrayList<>();
+    public static final List<String> XMLContent = new ArrayList<>();
+    public static List<String> childNode = new ArrayList<>();
     public static final Pattern patternXmlLabel = Pattern.compile("<\\?.* version=\"\\d.*\" encoding=\".*\"\\?>");
     public static String nodeName = null;
 
@@ -29,7 +29,7 @@ public class XMLParserDAOImpl implements XMLParserDAO {
             Matcher matcherForAttr = patternForAttr.matcher(strLine);
             if (matcherForAttr.find()){
                 splintedText.append(" ").append(matcherForAttr.group(1));
-                textFromFile.add(strLine);
+                XMLContent.add(strLine);
             }
         }
         return splintedText;
@@ -53,20 +53,22 @@ public class XMLParserDAOImpl implements XMLParserDAO {
         Matcher matcher = patternNodeName.matcher(node.parentNode);
         if (matcher.find()){
             nodeName = matcher.group(1);
-            node.setName(nodeName);
+            node.setChildNodeName(nodeName);
         }
         formattedNode = node.parentNode.replaceAll("<\\w* \\w*=\"\\d+\">", "");
         content = Collections.singletonList(formattedNode.replaceAll("</"+ nodeName +">", ""));
-        childNodes = content;
+        childNode = content;
         return new Node(nodeName, content);
     }
+    
+    @Override
     public List<Attributes> getAttributes(){
         List<Attributes> namesAndValues = new ArrayList<>();
         Pattern patternAttributeName = Pattern.compile("<name>(\\w*|(?:(?:\\w* ){1,6}\\w*))</name>");
         Pattern patternAttributeValue = Pattern.compile("(<\\w*>\\$(\\d*\\.\\d*)</\\w*>)");
-        for (int i = 0; i<childNodes.size(); i++){
-            Matcher matcherAttributeName = patternAttributeName.matcher(childNodes.get(i));
-            Matcher matcherAttributeValue = patternAttributeValue.matcher(childNodes.get(i));
+        for (int i = 0; i< childNode.size(); i++){
+            Matcher matcherAttributeName = patternAttributeName.matcher(childNode.get(i));
+            Matcher matcherAttributeValue = patternAttributeValue.matcher(childNode.get(i));
             while (matcherAttributeName.find()&&matcherAttributeValue.find()){
                 namesAndValues.add(new Attributes(nodeName, matcherAttributeName.group(1), matcherAttributeValue.group(2)));
             }

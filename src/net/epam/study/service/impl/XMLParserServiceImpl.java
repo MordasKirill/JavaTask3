@@ -18,7 +18,7 @@ public class XMLParserServiceImpl implements XMLParserService {
         XMLParserDAOImpl.fileReader();
         XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader());
         XMLParserDAOImpl.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
-        if (!Validator.billValidator((XMLParserDAOImpl.textFromFile), XMLParserDAOImpl.patternXmlLabel)) {
+        if (!Validator.billValidator((XMLParserDAOImpl.XMLContent), XMLParserDAOImpl.patternXmlLabel)) {
             return null;
         }
         return XMLParserDAO.getAttributes();

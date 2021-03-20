@@ -1,34 +1,34 @@
 package net.epam.study.entity;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Node {
-    public String name;
+    public String parentNodeName;
+    public String childNodeName;
     public String parentNode;
     public List<String> childNode;
 
     public Node(){
         super();
     }
-    public Node(String name, List<String> nodeList){
-        this.name = name;
+    public Node(String parentNodeName, List<String> nodeList){
+        this.parentNodeName = parentNodeName;
         this.childNode = nodeList;
     }
-    public Node(String name, String node) {
-        this.name = name;
+    public Node(String parentNodeName, String node) {
+        this.parentNodeName = parentNodeName;
         this.parentNode = node;
     }
-    public String getName(){
-        return name;
+    public String getChildNodeName(){
+        return childNodeName;
     }
-    public void setName(String string){
-        name = string;
+    public void setChildNodeName(String string){
+        childNodeName = string;
     }
     @Override
     public String toString() {
         return "Node{" +
-                "name='" + name + '\'' +
+                "name='" + parentNodeName + '\'' +
                 ", content=" + parentNode +
                 ", childContent=" + childNode +
                 '}';
