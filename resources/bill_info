@@ -2,12 +2,13 @@
 <breakfast-menu>
     <food id="1">
         <name>Chocolate</name>
-        <price>$5.95</price>
+        <price>
+            $5.95</price>
     </food>
     <food id="2">
         <name>Strawberry
-            Belgian
-            Waffles</name>
+            Belgian Waffles
+        </name>
         <price>$7.95</price>
     </food>
     <food id="3">

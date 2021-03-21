@@ -25,7 +25,7 @@ public class XMLParserDAOImpl implements XMLParserDAO {
         StringBuilder splintedText = new StringBuilder();
         String strLine;
         while ((strLine = bufferedReader.readLine()) != null) {
-            Pattern patternForAttr = Pattern.compile("\\s*(.*<.*>.*|\\w*)");
+            Pattern patternForAttr = Pattern.compile("\\s*(.*<.*>.*|(?:\\w*\\s*){1,6})");
             Matcher matcherForAttr = patternForAttr.matcher(strLine);
             if (matcherForAttr.find()){
                 splintedText.append(" ").append(matcherForAttr.group(1));
@@ -64,13 +64,13 @@ public class XMLParserDAOImpl implements XMLParserDAO {
     @Override
     public List<Attributes> getAttributes(){
         List<Attributes> namesAndValues = new ArrayList<>();
-        Pattern patternAttributeName = Pattern.compile("<name>(\\w*|(?:(?:\\w* ){1,6}\\w*))</name>");
-        Pattern patternAttributeValue = Pattern.compile("(<\\w*>\\$(\\d*\\.\\d*)</\\w*>)");
+        Pattern patternAttributeNameAndValue = Pattern.compile("(\\w*)>(\\w*|(?:(?:\\w* ){1,6}\\w*)|\\s*\\$(?:\\d*\\.\\d*\\s*))</(\\w*)");
         for (int i = 0; i< childNode.size(); i++){
-            Matcher matcherAttributeName = patternAttributeName.matcher(childNode.get(i));
-            Matcher matcherAttributeValue = patternAttributeValue.matcher(childNode.get(i));
-            while (matcherAttributeName.find()&&matcherAttributeValue.find()){
-                namesAndValues.add(new Attributes(nodeName, matcherAttributeName.group(1), matcherAttributeValue.group(2)));
+            Matcher matcherAttributeName = patternAttributeNameAndValue.matcher(childNode.get(i));
+            while (matcherAttributeName.find()) {
+                if (matcherAttributeName.group(1).equals(matcherAttributeName.group(3))) {
+                    namesAndValues.add(new Attributes(nodeName, matcherAttributeName.group(1), matcherAttributeName.group(2)));
+                }
             }
         }
         return namesAndValues;
