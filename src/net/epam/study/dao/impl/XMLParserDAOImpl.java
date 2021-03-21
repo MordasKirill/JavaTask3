@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -47,16 +48,15 @@ public class XMLParserDAOImpl implements XMLParserDAO {
     }
     public static Node getNodeChildList(Node node){
         List<String> content;
-        String formattedNode;
-
+        String [] formattedNode;
         Pattern patternNodeName = Pattern.compile("<(\\w*) \\w*=\"\\d+\">");
         Matcher matcher = patternNodeName.matcher(node.parentNode);
         if (matcher.find()){
             nodeName = matcher.group(1);
             node.setChildNodeName(nodeName);
         }
-        formattedNode = node.parentNode.replaceAll("<\\w* \\w*=\"\\d+\">", "");
-        content = Collections.singletonList(formattedNode.replaceAll("</"+ nodeName +">", ""));
+        formattedNode = node.parentNode.split("</"+ nodeName +">");
+        content = Arrays.asList(formattedNode);
         childNode = content;
         return new Node(nodeName, content);
     }
@@ -65,11 +65,15 @@ public class XMLParserDAOImpl implements XMLParserDAO {
     public List<Attributes> getAttributes(){
         List<Attributes> namesAndValues = new ArrayList<>();
         Pattern patternAttributeNameAndValue = Pattern.compile("(\\w*)>(\\w*|(?:(?:\\w* ){1,6}\\w*)|\\s*\\$(?:\\d*\\.\\d*\\s*))</(\\w*)");
+        Pattern patternNodeNameID = Pattern.compile("<\\w* (\\w*=\"\\d+\")>");
+        String nodeFullName;
         for (int i = 0; i< childNode.size(); i++){
             Matcher matcherAttributeName = patternAttributeNameAndValue.matcher(childNode.get(i));
+            Matcher matcherNodeNameID = patternNodeNameID.matcher(childNode.get(i));
+            if (matcherNodeNameID.find()) {
             while (matcherAttributeName.find()) {
-                if (matcherAttributeName.group(1).equals(matcherAttributeName.group(3))) {
-                    namesAndValues.add(new Attributes(nodeName, matcherAttributeName.group(1), matcherAttributeName.group(2)));
+                    nodeFullName = matcherNodeNameID.group(1);
+                    namesAndValues.add(new Attributes(nodeName + " " +nodeFullName, matcherAttributeName.group(1), matcherAttributeName.group(2)));
                 }
             }
         }

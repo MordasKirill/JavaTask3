@@ -19,7 +19,7 @@ public class Attributes {
 
     @Override
     public String toString() {
-        return "Attributes of node '" + nodeName + '\'' + " [" +
+        return "Attributes of node " + nodeName  + " [" +
                 "attributeName='" + attributeName + '\'' +
                 ", attributeValue='" + attributeValue + '\'' + ']';
     }

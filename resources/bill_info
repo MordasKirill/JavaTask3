@@ -4,6 +4,7 @@
         <name>Chocolate</name>
         <price>
             $5.95</price>
+        <region>USA</region>
     </food>
     <food id="2">
         <name>Strawberry
