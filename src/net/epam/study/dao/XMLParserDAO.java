@@ -6,5 +6,7 @@ import net.epam.study.entity.Node;
 import java.util.List;
 
 public interface XMLParserDAO {
+    Node getNodeChildList(Node node);
     List<Attributes> getAttributes();
+
 }

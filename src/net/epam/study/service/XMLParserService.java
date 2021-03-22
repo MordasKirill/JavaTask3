@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface XMLParserService {
     List<Attributes> getAttributes() throws IOException;
+    Node getNodeChildList(Node node) throws  IOException;
 }

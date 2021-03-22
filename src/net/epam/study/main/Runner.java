@@ -1,6 +1,8 @@
 package net.epam.study.main;
 
+import net.epam.study.dao.impl.XMLParserDAOImpl;
 import net.epam.study.entity.Attributes;
+import net.epam.study.entity.Node;
 import net.epam.study.service.XMLParserFactory;
 import net.epam.study.service.XMLParserService;
 
@@ -11,10 +13,13 @@ import java.util.List;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        List<Attributes> node = new ArrayList<>();
+        List<Attributes> attributesList;
+        Node node;
         XMLParserFactory factory = XMLParserFactory.getInstance();
         XMLParserService service = factory.getXMLParserService();
-        node = service.getAttributes();
-        PrintXMLParserInfo.print(node);
+        node = service.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
+        attributesList = service.getAttributes();
+        PrintXMLParserInfo.printNode(XMLParserDAOImpl.parentNodeName, XMLParserDAOImpl.parentNode, node.getChildNodeName(), node.childNode);
+        PrintXMLParserInfo.printAttributes(attributesList);
     }
 }
