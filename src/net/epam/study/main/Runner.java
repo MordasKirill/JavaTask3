@@ -19,7 +19,8 @@ public class Runner {
         XMLParserService service = factory.getXMLParserService();
         node = service.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
         attributesList = service.getAttributes();
-        PrintXMLParserInfo.printNode(XMLParserDAOImpl.parentNodeName, XMLParserDAOImpl.parentNode, node.getChildNodeName(), node.childNode);
+        PrintXMLParserInfo.printFormattedText();
+        PrintXMLParserInfo.printNode(node.getChildNodeName(), node.childNode);
         PrintXMLParserInfo.printAttributes(attributesList);
     }
 }

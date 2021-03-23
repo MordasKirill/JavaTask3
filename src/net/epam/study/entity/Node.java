@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Node {
     public String parentNodeName;
+    public String parentNode;
     public String childNodeName;
+    public List<String> childNode;
     public String attributeName;
     public String attributeValue;
-    public String parentNode;
-    public List<String> childNode;
 
     public Node(){
         super();
@@ -52,7 +52,7 @@ public class Node {
     @Override
     public String toString() {
         return "Node{" +
-                "name='" + parentNodeName + childNodeName + '\'' +
+                "Parent node name='" + parentNodeName + '\'' +
                 ", content=" + parentNode +
                 ", childContent=" + childNode +
                 '}';

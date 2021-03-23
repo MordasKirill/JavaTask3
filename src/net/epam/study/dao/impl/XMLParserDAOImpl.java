@@ -37,20 +37,16 @@ public class XMLParserDAOImpl implements XMLParserDAO {
         return splintedText;
     }
     public static Node getNodeList(StringBuilder text){
-        String nodeList = null;
-        String name = null;
         Node node = new Node();
         Pattern patternNode = Pattern.compile("<(\\w*-\\w*)>(.*)</(\\w*-\\w*)>");
         Matcher matcherNode = patternNode.matcher(text);
         if (matcherNode.find()){
-            nodeList = matcherNode.group(2);
             parentNode = matcherNode.group(2);
-            name = matcherNode.group(1);
             parentNodeName = matcherNode.group(1);
             node.setParentNode(parentNode);
             node.setParentNodeName(parentNodeName);
         }
-        return new Node(name, nodeList);
+        return new Node(parentNodeName, parentNode);
     }
     @Override
     public Node getNodeChildList(Node node){
