@@ -8,13 +8,13 @@ public class Validator {
     public static boolean billValidator(List<String> text, Pattern pattern){
         boolean result = false;
         if (text != null) {
-            for (int i = 0; i < text.size(); i++) {
-                Matcher matcher = pattern.matcher(text.get(i));
+            for (String value : text) {
+                Matcher matcher = pattern.matcher(value);
                 if (matcher.find()) {
                     result = true;
                 }
             }
         }
-        return result;
+        return !result;
     }
 }

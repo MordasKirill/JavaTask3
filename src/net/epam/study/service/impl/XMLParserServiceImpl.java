@@ -18,6 +18,9 @@ public class XMLParserServiceImpl implements XMLParserService {
         XMLParserDAO XMLParserDAO = factory.getXMLParserDAO();
         XMLParserDAOImpl.fileReader();
         XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader());
+        if (Validator.billValidator((XMLParserDAOImpl.XMLContent), XMLParserDAOImpl.patternXmlLabel)) {
+            return null;
+        }
         return XMLParserDAO.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
     }
     @Override
@@ -26,8 +29,7 @@ public class XMLParserServiceImpl implements XMLParserService {
         XMLParserDAO XMLParserDAO = factory.getXMLParserDAO();
         XMLParserDAOImpl.fileReader();
         XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader());
-        //XMLParserDAOImpl.getNodeChildList(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
-        if (!Validator.billValidator((XMLParserDAOImpl.XMLContent), XMLParserDAOImpl.patternXmlLabel)) {
+        if (Validator.billValidator((XMLParserDAOImpl.XMLContent), XMLParserDAOImpl.patternXmlLabel)) {
             return null;
         }
         return XMLParserDAO.getAttributes();

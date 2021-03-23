@@ -2,7 +2,6 @@ package net.epam.study.main;
 
 import net.epam.study.dao.impl.XMLParserDAOImpl;
 import net.epam.study.entity.Attributes;
-import net.epam.study.entity.Node;
 import net.epam.study.service.validation.Validator;
 
 import java.io.IOException;
@@ -10,14 +9,14 @@ import java.util.List;
 
 public class PrintXMLParserInfo {
     public static void printFormattedText() throws IOException {
-        if (!Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
+        if (Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct or empty!");
         }
         System.out.println("Formatted text: ");
         System.out.println(XMLParserDAOImpl.fileReader());
     }
     public static void printNode(String childName, List<String> childNode) throws IOException {
-        if (!Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
+        if (Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct or empty!");
         }
         System.out.println("Parent node: ");
@@ -29,7 +28,7 @@ public class PrintXMLParserInfo {
         }
     }
     public static void printAttributes(List<Attributes> attributesList){
-        if (!Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
+        if (Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct or empty!");
         }
         if (attributesList.size()>0) {

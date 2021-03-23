@@ -53,9 +53,9 @@ public class XMLParserDAOImpl implements XMLParserDAO {
         List<String> content;
         String [] formattedNode;
         Pattern patternNodeName = Pattern.compile("<(\\w*) \\w*=\"\\d+\">");
-        Matcher matcher = patternNodeName.matcher(node.parentNode);
-        if (matcher.find()){
-            childNodeName = matcher.group(1);
+        Matcher matcherNodeName = patternNodeName.matcher(node.parentNode);
+        if (matcherNodeName.find()){
+            childNodeName = matcherNodeName.group(1);
             node.setChildNodeName(childNodeName);
         }
         formattedNode = node.parentNode.split("</"+ childNodeName +">");

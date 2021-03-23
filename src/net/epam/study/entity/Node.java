@@ -51,10 +51,9 @@ public class Node {
     }
     @Override
     public String toString() {
-        return "Node{" +
-                "Parent node name='" + parentNodeName + '\'' +
+        return "Node " +
+                "[Parent node name='" + parentNodeName + '\'' +
                 ", content=" + parentNode +
-                ", childContent=" + childNode +
-                '}';
+                ", childContent=" + childNode + "]";
     }
 }
