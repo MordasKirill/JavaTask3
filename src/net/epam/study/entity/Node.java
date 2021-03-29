@@ -40,8 +40,8 @@ public class Node {
         return parentNode;
     }
 
-    public void setParentNode(String setParentNode) {
-        this.parentNode = setParentNode;
+    public void setParentNode(String parentNode) {
+        this.parentNode = parentNode;
     }
 
     public String getChildNodeName(){

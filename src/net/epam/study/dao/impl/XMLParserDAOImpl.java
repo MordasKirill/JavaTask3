@@ -58,8 +58,6 @@ public class XMLParserDAOImpl implements XMLParserDAO {
             childNodeName = matcherNodeName.group(1);
             node.setChildNodeName(childNodeName);
         }
-        node.setParentNode(parentNode);
-        node.setParentNodeName(parentNodeName);
         formattedNode = node.parentNode.split("</"+ childNodeName +">");
         content = Arrays.asList(formattedNode);
         childNode = content;
