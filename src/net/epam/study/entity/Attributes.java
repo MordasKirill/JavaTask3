@@ -3,7 +3,7 @@ package net.epam.study.entity;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Attributes {
+public class Attributes extends Node{
     String nodeName;
     String attributeName;
     String attributeValue;

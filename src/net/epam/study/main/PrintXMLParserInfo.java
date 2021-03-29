@@ -11,20 +11,22 @@ public class PrintXMLParserInfo {
     public static void printFormattedText() throws IOException {
         if (Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct or empty!");
+        } else {
+            System.out.println("Formatted text: ");
+            System.out.println(XMLParserDAOImpl.fileReader());
         }
-        System.out.println("Formatted text: ");
-        System.out.println(XMLParserDAOImpl.fileReader());
     }
     public static void printNode(String childName, List<String> childNode) throws IOException {
         if (Validator.billValidator(XMLParserDAOImpl.XMLContent, XMLParserDAOImpl.patternXmlLabel)) {
             System.out.println("XML file is not correct or empty!");
-        }
-        System.out.println("Parent node: ");
-        System.out.println(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
-        System.out.println("Child node name: " + childName);
-        System.out.println("Child node list: ");
-        for (String element : childNode) {
-            System.out.println(element);
+        } else {
+            System.out.println("Parent node: ");
+            System.out.println(XMLParserDAOImpl.getNodeList(XMLParserDAOImpl.fileReader()));
+            System.out.println("Child node name: " + childName);
+            System.out.println("Child node list: ");
+            for (String element : childNode) {
+                System.out.println(element);
+            }
         }
     }
     public static void printAttributes(List<Attributes> attributesList){
